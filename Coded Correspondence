@@ -1,0 +1,88 @@
+alphabet = "abcdefghijklmnopqrstuvwxyz"
+
+message = "xuo jxuhu! jxyi yi qd unqcfbu ev q squiqh syfxuh. muhu oek qrbu je tusetu yj? y xefu ie! iudt cu q cuiiqwu rqsa myjx jxu iqcu evviuj!"
+
+translated_message = ""
+for character in message:
+    if character in alphabet:
+      character_value = alphabet.find(character)
+      translated_message += alphabet[(character_value + 10) % 26]
+    else:
+      translated_message += character
+print(f"Translated Message: {translated_message}")
+
+my_message = "Im tired."
+encoded_message = ""
+for character in my_message:
+  if character in alphabet:
+    character_value = alphabet.find(character)
+    encoded_message += alphabet[(character_value - 10) % 26]
+  else:
+    encoded_message += character
+
+print(f"Encoded Message: {encoded_message}")
+
+def caesar_decode(message, offset):
+  decoded_message = ""
+
+  for character in message:
+    if character in alphabet:
+      character_value = alphabet.find(character)
+      decoded_message += alphabet[(character_value + offset) % 26]
+    else:
+      decoded_message += character
+
+  return decoded_message
+
+def caesar_encode(message, offset):
+  encoded_message = ""
+
+  for character in message:
+    if character in alphabet:
+      character_value = alphabet.find(character)
+      encoded_message += alphabet[(character_value - offset) % 26]
+    else:
+      encoded_message += character
+
+  return encoded_message
+
+message_one = caesar_decode("jxu evviuj veh jxu iusedt cuiiqwu yi vekhjuud.", 10)
+print(message_one)
+
+message_two = caesar_decode("bqdradyuzs ygxfubxq omqemd oubtqde fa oapq kagd yqeemsqe ue qhqz yadq eqogdq!", 14)
+print(message_two)
+
+message_three = caesar_decode("vhfinmxkl atox kxgwxkxw tee hy maxlx hew vbiaxkl hulhexmx. px'ee atox mh kxteer lmxi ni hnk ztfx by px ptgm mh dxxi hnk fxlltzxl ltyx.", 7)
+print(message_three)
+
+
+def vigenere_decode(message, keyword):
+  keyword_phrase = ""
+  keyword_index = 0
+
+  for character in message:
+    if keyword_index >= len(keyword):
+      keyword_index = 0
+    if character in alphabet:
+      keyword_phrase += keyword[keyword_index]
+      keyword_index += 1
+    else:
+      keyword_phrase += character
+
+  decoded_message = ""
+
+  for i in range(len(message)):
+    if message[i] in alphabet:
+      old_character_index = alphabet.find(message[i])
+      offset_index = alphabet.find(keyword_phrase[i])
+      new_character = alphabet[(old_character_index + offset_index) % 26]
+      decoded_message += new_character
+    else:
+      decoded_message += message[i]
+    
+  return decoded_message
+
+vigenere_message = "txm srom vkda gl lzlgzr qpdb? fepb ejac! ubr imn tapludwy mhfbz cza ruxzal wg zztcgcexxch!"
+vigenere_keyword = "friends"
+
+print(vigenere_decode(vigenere_message, vigenere_keyword))

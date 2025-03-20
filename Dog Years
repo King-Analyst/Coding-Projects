@@ -1,0 +1,19 @@
+//This is my age
+var myAge = 20
+//earlyYears is equal to 2
+var earlyYears = 2
+
+//I subtracted 2 from myAge and multiplied earlyYears by 10.5
+earlyYears *= 10.5
+var laterYears = myAge - 2
+//Im multiplying laterYears all in 1 step
+laterYears *= 4
+
+console.log(earlyYears)
+console.log(laterYears)
+//This caculates my age in dog years
+var myAgeInDogYears = (earlyYears + laterYears)
+//This puts my name in lowercase
+var myName = 'Osiris'.toLowerCase()
+
+console.log(`My name is ${myName}. I am ${myAge} years old in human years which is ${myAgeInDogYears} years old in dog years.`)
